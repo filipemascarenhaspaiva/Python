@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Estado do Betão</title>
+        <meta charset="utf-8">
+        <style></style>
+    </head>
+    <body>
+        <div class="geral">
+            <b>Nome:</b> {{ nome }} {{ sobrenome }}
+        </div>
+
+        <div class="geral">
+            <b>Idade:</b> {{ idade }}
+        </div>
+
+        {% if doido %}
+        <div class="geral">
+            <img src="{{imagem_doido}}" width="200">
+        </div>
+        <div class="geral">
+            {{ nome }} tá doido!
+        </div>
+
+        {% else %}
+        <div class="geral">
+            <img src="{{imagem_serio}}" width="200">
+        </div>
+        <div class="geral">
+            {{ nome }} tá sério!
+        </div>
+
+        {% endif %}
+    </body>
+</html>
