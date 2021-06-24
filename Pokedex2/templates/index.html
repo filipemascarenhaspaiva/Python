@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pokedex da Blue - Versão 2.0</title>
+        <link rel="stylesheet" href="static/style.css" />
+    </head>
+    <body>
+        <div class="bloco">
+            <img src="static/logo-blue.gif" alt="Logo da Blue" width="200">
+        </div>
+
+        {% if not selecionado %}
+
+            <div class="bloco">
+                <h1>Selecione um pokémon</h1>
+            </div>
+
+            <div class="lista_pokemons">
+                {% for pokemon in pokemons %}
+
+                    {% if pokemon.disponivel %}
+
+                        <div class="card_pokemon" data-nome="{{ pokemon.nome }}" data-numero="{{ pokemon.numero }}">
+                            <div class="imagem_pokemon">
+                                <img src="{{ caminho_base_imagem }}/{{ pokemon.numero }}.png" alt="Imagem do Pokémon">
+                            </div>
+
+                            <div class="nome_pokemon">
+                                <b>{{ pokemon.nome }}</b>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+
+            <div class="bloco">
+                <form method="POST">
+                    <input type="text" name="nr_pokemon" id="nr_pokemon" style="display: none" />
+                    <input type="submit" id="botao_escolher" class="botao" value="Escolher!" />
+                </form>
+            </div>
+
+            <div class="bloco" style="display: none;">
+                <h1 id="pokemon_selecionado">Nenhum pokémon foi selecionado.</h1>
+            </div>
+
+        {% else %}
+            
+            <div class="bloco">
+                <h1 id="pokemon_selecionado">Você selecionou o {{ pokemons[num_pokemon_int-1]['nome'] }} - nº {{ num_pokemon }}.</h1>
+            </div>
+            <div class="card_pokemon_2">
+                <div class="imagem_pokemon">
+                    <img src="{{ caminho_base_imagem }}/{{ num_pokemon }}.png" alt="Imagem do Pokémon">
+                </div>
+
+                <div class="nome_pokemon_2">
+                    <b>Descrição: </b> <i>{{ pokemons[num_pokemon_int-1]['descricao'] }}</i>
+                </div>
+                <div class="nome_pokemon_2">
+                    <b>Altura: </b> {{ pokemons[num_pokemon_int-1]['altura'] }}
+                </div>
+                <div class="nome_pokemon_2">
+                    <b>Categoria: </b> {{ pokemons[num_pokemon_int-1]['categoria'] }}
+                </div>
+                <div class="nome_pokemon_2">
+                    <b>Peso: </b> {{ pokemons[num_pokemon_int-1]['peso'] }}
+                </div>
+                <div class="nome_pokemon_2">
+                    <b>Habilidade: </b> {{ pokemons[num_pokemon_int-1]['habilidade'] }}
+                </div>
+                <div class="nome_pokemon_2">
+                    <b>Tipo: </b> {{ pokemons[num_pokemon_int-1]['tipo'] }}
+                </div>
+            </div>
+            <div class="bloco">
+                <button onclick="history.go(-1);" class="botao">Voltar</button>
+            </div>
+
+
+        {% endif %}
+        <script type="text/javascript" src="static/index.js"></script>
+    </body>
+</html>
